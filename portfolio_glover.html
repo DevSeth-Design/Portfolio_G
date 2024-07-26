@@ -1,45 +1,91 @@
 <!DOCTYPE html>
+<!-- Specifies the document type and version of HTML -->
 <html lang="en">
+<!-- Defines the language of the document -->
+
 <head>
     <meta charset="UTF-8">
+    <!-- Sets the character encoding for the document to UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <!-- Bootstrap CSS -->
+    <!-- Sets the viewport to make the website responsive on all devices -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Links to the Bootstrap CSS for styling and layout -->
+    <title>My Portfolio</title>
+    <!-- Sets the title of the webpage that appears in the browser tab -->
+    <link rel="stylesheet" href="port_css.css">
+    <!-- Links to an external CSS file for custom styles -->
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">My Website</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
+    <header class="header">
+        <!-- Defines the header section of the page -->
+        <div class="container">
+            <!-- A Bootstrap container to center the content and add padding -->
+            <h1>Website and User Interface Designer</h1>
+            <!-- Main heading of the page -->
+            <p class="subtitle">Personal Web Page Template</p>
+            <!-- Subtitle or description under the main heading -->
         </div>
-    </nav>
+    </header>
 
-    <!-- Main Content -->
-    <div class="container mt-5">
-        <h1 class="text-center">Welcome to My Website</h1>
-        <p>This is a simple website built with HTML, CSS, and Bootstrap.</p>
-    </div>
+    <section class="about">
+        <!-- Defines the "About Me" section of the page -->
+        <div class="container">
+            <h2>About Me</h2>
+            <!-- Section heading for the About Me section -->
+            <p>This is the about section where you can introduce yourself.</p>
+            <!-- Paragraph text for the About Me section -->
+        </div>
+    </section>
 
-    <!-- Bootstrap JS and dependencies -->
+    <section class="projects">
+        <!-- Defines the "Projects" section of the page -->
+        <div class="container">
+            <h2>Projects</h2>
+            <!-- Section heading for the Projects section -->
+            <div class="project-grid">
+                <!-- Container for project items, potentially styled with CSS for a grid layout -->
+                <div class="project-item">
+                    <!-- Individual project item -->
+                    <img src="images/project1.jpg" alt="Project 1">
+                    <!-- Image for Project 1 with alt text -->
+                    <h3>Project 1</h3>
+                    <!-- Subheading for Project 1 -->
+                    <p>Description of project 1.</p>
+                    <!-- Description for Project 1 -->
+                </div>
+                <div class="project-item">
+                    <!-- Individual project item -->
+                    <img src="images/project2.jpg" alt="Project 2">
+                    <!-- Image for Project 2 with alt text -->
+                    <h3>Project 2</h3>
+                    <!-- Subheading for Project 2 -->
+                    <p>Description of project 2.</p>
+                    <!-- Description for Project 2 -->
+                </div>
+                <!-- Add more project items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <!-- Defines the "Contact" section of the page -->
+        <div class="container">
+            <h2>Contact</h2>
+            <!-- Section heading for the Contact section -->
+            <p>Contact information or form goes here.</p>
+            <!-- Placeholder text for contact information or a contact form -->
+        </div>
+    </section>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Links to the jQuery library -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <!-- Links to the Popper.js library, required for Bootstrap's JavaScript components -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <!-- Links to the Bootstrap JavaScript library -->
     <script src="js/scripts.js"></script>
+    <!-- Links to a custom JavaScript file -->
 </body>
+
 </html>
