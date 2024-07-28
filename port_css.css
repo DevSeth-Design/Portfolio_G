@@ -1,3 +1,5 @@
+@import "";
+
 /* Define color variables */
 :root {
     --primary-color: #001f3f; /* Navy blue */
@@ -17,18 +19,23 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
 }
-
 /*================================================================*/
 /*  Hero.
 /*================================================================*/
 .hero-section {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
     height: 25vh;
     background: url('images/background1.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    text-align: left;
     background-attachment: fixed; /* Adds the parallax effect */
 }
 
@@ -44,16 +51,79 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.hero-content h1 {
-    font-size: 4em;
+.hero-name {
+    font-size: 2em;
     margin: 0;
+    padding-left: 20px; /* Add padding from the left edge */
+    color: var(--text-color);
 }
 
-.hero-content p {
-    font-size: 1.5em;
+.hero-links {
+    display: flex;
+    gap: 20px; /* Space between the links */
+    padding-right: 20px; /* Add padding from the right edge */
+}
+
+.hero-links .hero-link {
     color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2em;
+    position: relative;
+}
+
+.hero-links .hero-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--text-color);
+    transition: width 0.3s;
+}
+
+.hero-links .hero-link:hover::after {
+    width: 100%;
+}
+
+.hero-links .hero-link.active,
+.hero-links .hero-link.active::after {
+    color: var(--active-color);
+    width: 100%;
+}
+.menu-button {
+    display: none;
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .hero-links {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: var(--overlay-color);
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .hero-links.show {
+        display: flex;
+    }
+
+    .menu-button {
+        display: block;
+    }
 }
 
 /*================================================================*/
@@ -63,8 +133,17 @@ body {
     display: grid;
     grid-template-columns: 1fr; /* Single column for grid container */
     grid-gap: 20px; /* Space between grid items */
-    margin-top: 60px; /* Adjust to accommodate the height of the top rectangle */
+    margin-top: 30vh; /* Adjust to accommodate the height of the top rectangle */
     padding: 20px;
+}
+/* Ensure other sections are not given a higher z-index */
+.header-about-container,
+.divider-projects,
+.projects,
+.contact {
+    position: relative; /* Ensure these sections have default positioning */
+    z-index: 1; /* Ensure these sections are below the hero section */
+    padding-top: 30px; /* Add padding to ensure content is visible below the fixed hero */
 }
 
 .header-about-container {
@@ -153,7 +232,19 @@ body {
 
 .divider-projects h2 {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 10px 10px;
+    color: var(--primary-color);
+}
+
+.divider-contact {
+    text-align: center;
+    margin: 40px 0; /* Space around the divider */
+    position: relative; /* Needed for pseudo-element positioning */
+}
+
+.divider-contact h2 {
+    display: inline-block;
+    padding: 10px 10px;
     color: var(--primary-color);
 }
 
@@ -177,6 +268,8 @@ body {
     color: var(--primary-color);
     margin: 0 10px; /* Space around the star */
 }
+
+
 
 /*================================================================*/
 /* Portfolio.
@@ -222,6 +315,50 @@ body {
     margin: 0;
     color: var(--sub-text-color); /* Ensure text color is set */
 }
+/*================================================================*/
+/* Contact.
+/*================================================================*/
+.contact {
+    padding: 60px 0;
+}
 
+.contact h2 {
+    text-align: center;
+    color: var(--primary-color); 
+    margin-bottom: 40px;
+}
 
+.contact .container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact .form-label {
+    font-weight: bold;
+    color: var(--primary-border-color)
+}
+
+.contact .form-control {
+    border: 1px solid var(--primary-border-color);
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.contact .btn:hover {
+    background-color: var(--primary-border-color);
+}
 
