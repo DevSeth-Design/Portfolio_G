@@ -44,4 +44,17 @@ document.addEventListener('DOMContentLoaded', function() {
         this.submit();
     });
 });
+document.addEventListener("DOMContentLoaded", function() {
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    projectItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const target = item.getAttribute('data-target');
+            if (target) {
+                window.location.href = target;
+            }
+        });
+    });
+});
+
 
