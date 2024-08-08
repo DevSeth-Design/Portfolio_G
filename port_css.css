@@ -172,12 +172,13 @@ body {
 /* Profile picture */
 .profile-image {
     border-radius: 50%; /* Make the image circular */
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     object-fit: cover; /* Ensures the image covers the whole area */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 2;
+    
     box-sizing: border-box;
 }
 
@@ -202,24 +203,23 @@ body {
     position: absolute;
     border-radius: 50%;
     background: var(--sub-text-color);   
-    z-index: 1;
+    z-index: 1; /* Ensure circles are behind the image */
 }
 
-.circle1 {
-    width: 180px;
-    height: 180px;
-    top: -15px;
-    left: -15px;
+/* .circle1 {
+    width: 210px; 
+    height: 210px; 
+    top: -170px; 
+    left: -20px; 
     border: 2px solid var(--text-color);
-}
+} */
 
 .circle2 {
-    width: 200px;
-    height: 200px;
-    top: -25px;
-    left: -25px;
-    background: var(--sub-text-color);
-}
+    width: 230px;
+    height: 230px;
+    left: -15px; 
+    background: var(--sub-text-color); 
+} 
 
 /*================================================================*/
 /* Dividers.
@@ -269,25 +269,22 @@ body {
     margin: 0 10px; /* Space around the star */
 }
 
-
-
 /*================================================================*/
 /* Portfolio.
 /*================================================================*/
 .grid-container-portfolio {
-    display: grid;
-    grid-template-columns: 1fr; /* Single column for grid container */
-    grid-gap: 20px; /* Space between grid items */
+    display: flex;
+    justify-content: center; /* Center grid container horizontally */
     padding: 20px;
-    justify-content: center;
-    align-items: center;
 }
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allow items to fit into rows */
     gap: 20px;
-    justify-content: center;
+    max-width: 1200px; /* Adjust max width to center items within the container */
+    width: 100%;
+    justify-content: center; /* Center grid items horizontally */
 }
 
 .project-item {
@@ -296,6 +293,12 @@ body {
     padding: 20px;
     border-radius: 10px;
     position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation for transform and box-shadow */
+}
+
+.project-item:hover {
+    transform: scale(1.05); /* Slightly scale up the item on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a more prominent shadow on hover */
 }
 
 .project-item img {
@@ -307,6 +310,11 @@ body {
     margin-bottom: 10px;
     background-color: var(--background-color); /* Ensure the background color is set */
     padding: 5px; /* Padding to create space between the image and the border */
+    transition: transform 0.3s ease; /* Smooth animation for transform */
+}
+
+.project-item img:hover {
+    transform: scale(1.1); /* Slightly scale up the image on hover */
 }
 
 .project-item h3 {
@@ -338,7 +346,7 @@ body {
 
 .contact .form-label {
     font-weight: bold;
-    color: var(--primary-border-color)
+    color: var(--primary-border-color);
 }
 
 .contact .form-control {
@@ -364,4 +372,5 @@ body {
 .contact .btn:hover {
     background-color: var(--primary-border-color);
 }
+
 
