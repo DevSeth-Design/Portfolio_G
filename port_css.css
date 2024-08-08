@@ -279,12 +279,15 @@ body {
     grid-template-columns: 1fr; /* Single column for grid container */
     grid-gap: 20px; /* Space between grid items */
     padding: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
+    justify-content: center;
 }
 
 .project-item {
