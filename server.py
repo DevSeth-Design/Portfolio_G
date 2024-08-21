@@ -8,31 +8,26 @@ import json
 from email.mime.text import MIMEText
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-#logging imports: 
 import logging
 from logging.handlers import RotatingFileHandler
 
-#-----------------------------------------
-# LOGGING
-#-----------------------------------------
-log_dir = '/home2/rftboymy/public_html/website_1194c547/logs'
+# Set up logging
+log_dir = 'logs'  # Changed to a relative path for local development
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 file_handler = RotatingFileHandler(os.path.join(log_dir, 'flask_app.log'), maxBytes=10240, backupCount=10)
 file_handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
 file_handler.setFormatter(formatter)
-app.logger.addHandler(file_handler)
 
+# Initialize the Flask application
+app = Flask(__name__)
+app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
 app.logger.info('Flask app started')
-#-----------------------------------------
-# SERVER.
-#-----------------------------------------
-app = Flask(__name__)
 
-# Load the client secret from the JSON file
-with open('/home2/rftboymy/public_html/website_1194c547/credentials.json', 'r') as f:
+# Load the client secret from the JSON file (use local path)
+with open('credentials.json', 'r') as f:
     client_info = json.load(f)
     app.secret_key = client_info['web']['client_secret']
 
@@ -42,37 +37,39 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.send']
 def index():
     return render_template('contact_form.html')
 
-@app.route('/send-email', methods=['GET','POST'])
+@app.route('/send-email', methods=['GET', 'POST'])
 def send_email():
-    app.logger.info("Received reqauest to send an email")
-    return "Send Emial Route Working!!"
-    # if 'credentials' not in session:
-    #     return redirect(url_for('authorize'))
+    app.logger.info("Received request to send an email")
 
-    # credentials = Credentials(**session['credentials'])
-    # service = build('gmail', 'v1', credentials=credentials)
+    if 'credentials' not in session:
+        return redirect(url_for('authorize'))
 
-    # name = request.form['name']
-    # email = request.form['email']
-    # phone = request.form['phone']
-    # message = request.form['message']
+    credentials = Credentials(**session['credentials'])
+    service = build('gmail', 'v1', credentials=credentials)
 
-    # email_message = MIMEText(f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}")
-    # email_message['to'] = 'your_email@gmail.com'
-    # email_message['from'] = 'sethmglover@gmail.com'
-    # email_message['subject'] = 'New Contact Form Submission'
-    # raw_message = base64.urlsafe_b64encode(email_message.as_bytes()).decode()
+    name = request.form['name']
+    email = request.form['email']
+    phone = request.form['phone']
+    message = request.form['message']
 
-    # try:
-    #     service.users().messages().send(userId='me', body={'raw': raw_message}).execute()
-    #     return "Email sent successfully! Thank you for contacting us."
-    # except HttpError as error:
-    #     return f"An error occurred: {error}"
+    email_message = MIMEText(f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\nMessage:\n{message}")
+    email_message['to'] = 'sethmglover@gmail.com'  # Replace with your email
+    email_message['from'] = 'sethmglover@gmail.com'  # Replace with your email
+    email_message['subject'] = 'New Contact Form Submission'
+    raw_message = base64.urlsafe_b64encode(email_message.as_bytes()).decode()
+
+    try:
+        service.users().messages().send(userId='me', body={'raw': raw_message}).execute()
+        return "Email sent successfully! Thank you for contacting us."
+    except HttpError as error:
+        app.logger.error(f"An error occurred: {error}")
+        return f"An error occurred: {error}"
+
 
 @app.route('/authorize')
 def authorize():
     flow = InstalledAppFlow.from_client_secrets_file(
-        '/home2/rftboymy/public_html/website_1194c547/credentials.json', SCOPES)
+        'credentials.json', SCOPES)  # Use local path
     flow.redirect_uri = url_for('oauth2callback', _external=True)
     authorization_url, state = flow.authorization_url(
         access_type='offline',
@@ -88,8 +85,9 @@ def oauth2callback():
         return redirect(url_for('authorize'))
 
     flow = InstalledAppFlow.from_client_secrets_file(
-        '/home2/rftboymy/public_html/website_1194c547/credentials.json', SCOPES, state=state)
-    flow.redirect_uri = 'http://sethgdesigns.com/oauth2callback'
+        'credentials.json', SCOPES, state=state)
+    flow.redirect_uri = 'https://localhost:5000/oauth2callback'  # Use this URI
+
 
     authorization_response = request.url
     flow.fetch_token(authorization_response=authorization_response)
