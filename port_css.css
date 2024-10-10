@@ -373,4 +373,84 @@ body {
     background-color: var(--primary-border-color);
 }
 
+/*================================================================*/
+/* Games.
+/*================================================================*/
+#games-section {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-color);
+    margin-top: 300px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+}
+.game-item {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 20px;
+    padding-bottom: 60px; /* Add extra padding at the bottom to make space for the button */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    max-width: 600px; /* Adjust to suit your design */
+    width: auto; /* Remove the 100% width */
+    margin: 20px auto; /* Center the game-item inside its container */
+}
 
+.game-item img.game-image {
+    max-width: 90%; /* Adjust the size to suit your design */
+    margin: 0 auto 20px; /* Center the image horizontally and add space below it */
+    border: 3px solid #ffffff; /* Add a border to make it pop */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add some shadow to make it stand out */
+    display: block; /* Ensure the image is treated as a block element */
+}
+
+.game-item a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: var(--primary-border-color);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    position: absolute; /* Keep it positioned relative to the game-item container */
+    bottom: 20px; /* Space it above the bottom edge of the container */
+    left: 50%;
+    transform: translateX(-50%); /* Center the button horizontally */
+}
+
+.game-item a:hover {
+    background-color: #004080;
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: #333333; /* Change this to your desired main text color */
+}
+
+.content {
+    flex: 1;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+}
