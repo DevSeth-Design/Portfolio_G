@@ -57,4 +57,17 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+document.querySelectorAll('.website-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+        if (this.dataset.hosted === "false") {
+            event.preventDefault();
+            alert("This website is currently not hosted.");
+        }
+    });
+});
 
+document.querySelectorAll('.website-img').forEach(image => {
+    image.addEventListener('click', function() {
+        this.classList.toggle('enlarged');
+    });
+});

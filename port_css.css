@@ -3,6 +3,7 @@
 /* Define color variables */
 :root {
     --primary-color: #001f3f; /* Navy blue */
+    --icon-color:#00080f;
     --primary-border-color: #0056b3; /* Darker blue */
     --secondary-color: #6c757d; /* Gray */
     --background-color: #f8f9fa; /* Light background */
@@ -106,29 +107,46 @@ body {
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .hero-links {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        background-color: var(--overlay-color);
-        position: absolute;
-        top: 50px;
-        right: 20px;
-        padding: 10px;
-        border-radius: 5px;
+        display: flex; /* Make sure links are visible by default */
+        flex-direction: column; /* Stack links vertically */
+        gap: 10px; /* Space between each link */
+        position: relative; /* Adjust position to prevent overlapping */
+        padding: 10px 20px; /* Add some padding for better appearance */
+        z-index: 10; /* Ensure links are on top */
     }
 
-    .hero-links.show {
-        display: flex;
+    .hero-links .hero-link {
+        text-align: center; /* Center links for better layout on mobile */
+        font-size: 1.5em; /* Increase the size for better touch accessibility */
     }
 
     .menu-button {
-        display: block;
+        display: none;
+        z-index: 15; /* Make sure the button is above the other elements */
     }
 }
 
 /*================================================================*/
 /*  Header Section / About Me.
 /*================================================================*/
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+    .header-about-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-item {
+        order: -1; /* Move the profile picture to the top */
+    }
+
+    .header, .about {
+        padding: 10px; /* Adjust padding for better spacing */
+        text-align: center; /* Center-align text for better mobile presentation */
+    }
+}
+
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr; /* Single column for grid container */
@@ -373,6 +391,58 @@ body {
     background-color: var(--primary-border-color);
 }
 
+.contact {
+    padding: 60px 0;
+    position: relative;
+}
+
+.contact h2 {
+    text-align: center;
+    color: var(--primary-color); 
+    margin-bottom: 40px;
+}
+
+.contact .container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center; /* Center align the contact details */
+}
+
+.contact .contact-info {
+    font-size: 1em;
+    margin: 10px 0; /* Space between each contact detail */
+    color: var(--primary-border-color);
+}
+
+.contact .contact-info a {
+    color: var(--primary-color); /* Match link color to your primary color */
+    text-decoration: none;
+}
+
+.contact .contact-info a:hover {
+    text-decoration: underline; /* Underline links on hover for better UX */
+}
+
+/* Social icons styling */
+.social-icons {
+    margin-top: 15px; /* Space above the GitHub icon */
+    text-align: center; /* Center align the icon for better presentation */
+}
+
+.social-icon {
+    color: var(--icon-color); /* Set the color to match your theme */
+    font-size: 2em; /* Ensure the icon is large enough */
+    text-decoration: none; /* Remove any underlines */
+    transition: color 0.3s ease, transform 0.3s ease; /* Add hover effect */
+}
+
+.social-icon:hover {
+    color: var(--background-color); /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+
+
 /*================================================================*/
 /* Games.
 /*================================================================*/
@@ -453,4 +523,83 @@ footer {
     color: #ffffff;
     text-align: center;
     padding: 1rem 0;
+}
+/*================================================================*/
+/* Websites.
+/*================================================================*/
+
+#web {
+    padding-top: 30vh; /* Adjust this value as needed to create enough space below the hero */
+}
+
+/* Websites section heading (e.g., "Websites") */
+#web h2 {
+    color: var(--primary-color); /* Change the color to match your theme, e.g., --primary-color */
+    font-size: 2.5em; /* Adjust the size as desired */
+    text-align: center; /* Center align if you want */
+    margin-bottom: 20px;
+}
+
+#web h4 {
+    color: var(--text-color);
+    font-size: .75em;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Websites section paragraph */
+#web p {
+    color: var(--text-color); /* Use a variable or any desired color, e.g., #333333 */
+    font-size: 1.1em; /* Adjust the size as desired */
+    line-height: 1.5; /* Add line height for better readability */
+    text-align: center; /* Optional: center-align the paragraph */
+}
+
+/* Website summary text */
+.website-card h4 {
+    color: var(--primary-border-color); /* Choose a color that stands out for titles */
+    font-size: 1.5em; /* Adjust as needed */
+}
+
+.website-card p {
+    color: var(--sub-text-color); /* Adjust color for readability */
+    font-size: 1em; /* Adjust as needed */
+}
+
+.website-card {
+    background-color: var(--primary-color);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on hover */
+    overflow: visible; /* Ensure no content is hidden or clipped */
+    position: relative; /* Allow proper stacking of elements */
+}
+
+
+.website-card:hover {
+    transform: scale(1.02); /* Slightly scale up the entire card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a deeper shadow on hover for emphasis */
+}
+
+.website-img {
+    width: 100%; /* Make sure the image takes up the full width of its container */
+    max-width: 500px; /* Set a max width so the image doesn't get too large */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+}
+
+/* Remove the transform scale on image hover to fix the enlargement issue */
+.website-img:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Only change the shadow on hover */
+}
+
+.row {
+    overflow: visible; /* Ensure content in flex containers is not clipped */
+}
+
+.col-sm-7 {
+    overflow: visible; /* Make sure child elements are not hidden */
+    position: relative; /* Allow proper positioning */
 }
