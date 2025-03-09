@@ -1,0 +1,115 @@
+@use 'global';
+@use 'sass:color';
+
+.contact-container {
+    width: 100%;
+    max-width: none; // Remove max-width constraint
+    margin: 50px auto;
+    padding: 30px;
+    background: global.$primary-color; 
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+
+    // Match width and spacing with cards section
+    @media (min-width: 768px) {
+        width: 100%; // Full width to match the cards section
+    }
+
+    h2 {
+        color: #d9dce7;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        margin: 0 auto;
+        align-items: stretch; // Make sure all children stretch to full width
+
+        label {
+            font-size: 1rem;
+            color: #cbcdd3;
+            text-align: left;
+            width: 100%;
+            margin-bottom: -5px; // Reduce space between label and input
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid #6c757d;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            transition: all 0.3s ease-in-out;
+
+            &:focus {
+                outline: none;
+                border-color: #2e7df6;
+                background: global.$background-color;
+                color: global.$alt-text-color;
+            }
+            
+            &:hover {
+                border-color: global.$button-color;
+                background: global.$background-color;
+                color: global.$alt-text-color;
+                transform: scale(1.02);
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(0deg, global.$overlay-color, global.$button-color, rgb(162, 202, 216));
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 2.0s ease-in-out;
+            margin-top: 10px;
+            align-self: center;
+            width: auto;
+            min-width: 150px;
+
+            &:hover {
+                background: linear-gradient(45deg, #001f3f, #2e7df6);
+            }
+        }
+    }
+
+    .status-message {
+        margin-top: 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+    }
+}
+
+// Add this to match the width of the contact container with the cards section
+.home-container {
+    section {
+        padding: 0 20px; // Add consistent padding to all sections
+    }
+    
+    .cards-section {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        
+        .card {
+            flex: 1;
+        }
+    }
+}

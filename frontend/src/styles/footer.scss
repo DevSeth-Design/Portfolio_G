@@ -1,0 +1,44 @@
+// src/styles/_footer.scss
+
+@use 'global';
+@use 'sass:color';
+
+.footer {
+    background-color: global.$primary-color;
+    color: global.$text-color;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    
+    .social-icons {
+        margin-top: 10px;
+        
+        .social-icon {
+            color: global.$text-color;
+            font-size: 1.8em;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+
+            &:hover {
+                color: color.adjust(global.$text-color, $lightness: 10%);
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .footer-links {
+        margin-top: 10px;
+
+        .footer-link {
+            color: global.$text-color;
+            text-decoration: none;
+            margin: 0 10px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
